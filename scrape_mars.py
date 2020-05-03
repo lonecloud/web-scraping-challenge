@@ -61,9 +61,9 @@ def scrape():
     
 
     
-    images.append(image_result.img["src"])
+    image = f'https://www.jpl.nasa.gov{image_result.img["src"]}'
         #print(image_result.img['src'])
-    Mars_data["image_url"] = images
+    Mars_data["image_url"] = image
   
 
 
@@ -125,7 +125,7 @@ def scrape():
         image_url = image_results.find_all("li")[0].a.get("href")
     
         return image_url
-        
+
     hemisphere_image_urls.append({'title':'Valles Marineris Hemisphere', 'img_url': mars_hemispheres(valles_url)})   
     hemisphere_image_urls.append({'title':'Cerberus Hemisphere', 'img_url': mars_hemispheres(cerberus_url)})
     hemisphere_image_urls.append({'title':'Schiaparelli Hemisphere', 'img_url': mars_hemispheres(schiaparelli_url)})
