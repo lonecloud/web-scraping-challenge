@@ -30,15 +30,17 @@ def scrape():
     html = browser.html
     soup = bs(html, "html.parser")
 
-
     results = soup.find_all("div", class_="list_text")
     
 
-    for result in results:
-        title = result.find('div', class_='content_title').a.get_text()
-        body = result.find('div', class_='article_teaser_body').get_text()
+    result = results[0]
+    title = result.find('div', class_='content_title').a.get_text()
+    body = result.find('div', class_='article_teaser_body').get_text()
 
-    Mars_data[title] = body
+    #Mars_data[title] = body
+    Mars_data["title"] = title
+    Mars_data["body"] = body
+    
     
 
 
@@ -55,11 +57,11 @@ def scrape():
     image_soup = bs(image_html,"html.parser")
 
     image_results = image_soup.find_all("div",class_="img")
+    image_result = image_results[0]
     
-    images = []
 
-    for image_result in image_results:
-        images.append(image_result.img["src"])
+    
+    images.append(image_result.img["src"])
         #print(image_result.img['src'])
     Mars_data["image_url"] = images
   
@@ -105,8 +107,10 @@ def scrape():
     syrtis_url = "https://astrogeology.usgs.gov/search/map/Mars/Viking/syrtis_major_enhanced"
     valles_url = "https://astrogeology.usgs.gov/search/map/Mars/Viking/valles_marineris_enhanced"
     
+    hemisphere_image_urls =[]
+
     def mars_hemispheres(hemi_url):
-        hemisphere_image_urls =[]
+        
     
         browser.visit(hemi_url)
 
@@ -120,7 +124,8 @@ def scrape():
         image_results = hemi_soup.find("div",class_="downloads")
         image_url = image_results.find_all("li")[0].a.get("href")
     
-    
+        return image_url
+        
     hemisphere_image_urls.append({'title':'Valles Marineris Hemisphere', 'img_url': mars_hemispheres(valles_url)})   
     hemisphere_image_urls.append({'title':'Cerberus Hemisphere', 'img_url': mars_hemispheres(cerberus_url)})
     hemisphere_image_urls.append({'title':'Schiaparelli Hemisphere', 'img_url': mars_hemispheres(schiaparelli_url)})
