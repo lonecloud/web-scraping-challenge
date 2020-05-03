@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class = "container">
+        <div class="jumbotron">
+            <h1>Mission to Mars</h1>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape new Mars Data</a>
+            </p>
+        </div>
+    </div>
+
+
+    <div class = "container-fluid">
+        <div class ="row">
+            <div class = "col-md-12">
+                <h2> Lastest Mars News</h2>
+                <h4>{{ mars_.title }}</h4>
+                <h4>{{ mars_.body }}</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-8 big_box">
+            <h2>Featured Mars Image</h2>
+            <img src="{{mars_.image_url}}" alt="Mars featured image" />
+    </div>
+
+    <div class="col-md-4">
+        <div class="row weather-box">
+          <div class="col-md-12">
+            <h3>Current Weather on Mars</h3>
+            <p>
+              {{mars_.Mars_weather}}
+            </p>
+          </div>
+        </div>
+
+    <div class="col-md-12">
+        <h3>Mars facts</h3>
+        {{mars_.html_table | safe }}
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+<div class="container-fluid">
+
+  <div class="jumbotron">
+    <h1>Mars Hemispheres</h1>
+
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{mars_.Hemisphere[0]['img_url']}}" alt="Mars Hemisphere1" style="width:400px;height:400px;border:0;">
+        <h3>{{mars_.Hemisphere[0]['title']}}</h3>
+      </div>
+      <div class="col-md-6">
+        <img src="{{mars_.Hemisphere[1]['img_url']}}" alt="Mars Hemisphere2" style="width:400px;height:400px;border:0;">
+        <h3>{{mars_.Hemisphere[1]['title']}}</h3>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{mars_.Hemisphere[2]['img_url']}}" alt="Mars Hemisphere1" style="width:400px;height:400px;border:0;">
+        <h3>{{mars_.Hemisphere[2]['title']}}</h3>
+      </div>
+      <div class="col-md-6">
+        <img src="{{mars_.Hemisphere[3]['img_url']}}" alt="Mars Hemisphere2" style="width:400px;height:400px;border:0;">
+        <h3>{{mars_.Hemisphere[3]['title']}}</h3>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+crossorigin="anonymous">
+</script>
+
+
+
+
+</body>
